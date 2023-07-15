@@ -4,10 +4,8 @@ header("Access-Control-Allow-Headers: *");
 header("Access-Control-Allow-Methods: *");
 
 if ($_SERVER['REQUEST_METHOD'] == 'GET') {
-
-  $id = $_GET['id'];
-  
   $data = json_decode(file_get_contents("./data.json"));
+  $id = $_GET['id'];  
 
   $result = '401';
   foreach ($data as $elem) {
@@ -18,7 +16,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
   echo $result;
 }
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+else if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   $inputdata = json_decode(file_get_contents("php://input"));
   $data = json_decode(file_get_contents("./data.json"));
   array_push($data, $inputdata);

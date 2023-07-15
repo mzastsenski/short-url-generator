@@ -25,13 +25,18 @@ function App() {
 
   const getURL = () => {
     const link = ref.current.value;
-    if (link) {
-      const id = (Math.random() + 1).toString(36).substring(6);
+    setLink(link);
+    if (
+      link.search(/\./) > 8 &&
+      (link.search("http://") >= 0 || link.search("https://") >= 0)
+    ) {
+      const id = (Math.random() + 1).toString(36).substring(7);
       const url = window.location.origin + "/#" + id;
-      setLink(link);
       setUrl(url);
       sendData({ id, link });
       ref.current.value = "";
+    } else {
+      setUrl("Enter rigth URL");
     }
   };
 
@@ -43,7 +48,12 @@ function App() {
     <div className="app">
       <div>
         <span>URL: </span>
-        <input ref={ref} type="text" name="link" />
+        <input
+          ref={ref}
+          type="text"
+          name="link"
+          onKeyDown={(e) => e.key === "Enter" && getURL()}
+        />
         <button onClick={getURL}>Get</button>
       </div>
       {link && (
