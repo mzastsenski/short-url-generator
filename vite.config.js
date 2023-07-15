@@ -7,8 +7,8 @@ export default defineConfig({
   server: {
     proxy: {
       "/api": {
-        target: "http://192.168.5.20:4000/api",
-        // target: "https://shorturl.mzas.de/api",
+        // target: "http://192.168.5.20:4000/api",
+        target: "https://shorturl.mzas.de/api",
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api/, ""),
       },

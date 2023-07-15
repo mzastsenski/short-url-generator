@@ -42,7 +42,7 @@ function App() {
   return (
     <div className="app">
       <div>
-        <span> Get short URL: </span>
+        <span>URL: </span>
         <input ref={ref} type="text" name="link" />
         <button onClick={getURL}>Get</button>
       </div>
